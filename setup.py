@@ -45,7 +45,7 @@ setup(
     version=get_version(),
     author='Ilya Lebedev',
     author_email='melevir@gmail.com',
-    install_requires=['flake8', 'typing-extensions'],
+    install_requires=['flake8'],
     entry_points={
         'flake8.extension': [
             'CCE = flake8_class_attributes_order.checker:ClassAttributesOrderChecker',
