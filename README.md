@@ -8,10 +8,10 @@
 An extension for flake8 to report on wrong class attributes order and
 class level logic.
 
-The validator can extract class attribute type: docstring, property,
+The validator can extract a class attribute type: docstring, property,
 nested class, `GLOBAL_VAR`, etc.
 If django model fields are detected, the validator can detect,
-if the field is link to another table (foreign key, generic key, etc)
+if the field is a link to another table (foreign key, generic key, etc)
 or not.
 
 After resolving each attribute type, validator checks attributes order.
@@ -34,12 +34,12 @@ If the order is broken, validator will report on it.
 Besides methods, the validator checks other attributes methods:
 docstrings, nested classes, constants, attributes, and so on.
 
-Also validator checks, if class has no class level logic and report
+Also, validator checks, if class has no class level logic and report
 if any. Here is an example:
 
 ```python
 class PhoneForm(forms.Form):
-    phone = forms.CharField(17, label='Телефон'.upper())
+    phone = forms.CharField(17, label='Phone number'.upper())
 
     # this should happen in __init__!
     phone.widget.attrs.update({'class': 'form-control phone'})
@@ -56,12 +56,12 @@ pip install flake8-class-attributes-order
 
 ### Strict mode
 
-There is another preconfigured order that is more strict on private subtypes:
+There is another preconfigured order that is stricter on private subtypes:
 
 - `__new__`
 - `__init__`
 - `__post_init__`
-- other magic method
+- other magic methods
 - `@property`
 - `@staticmethod`
 - `@classmethod`
@@ -86,6 +86,8 @@ use_class_attributes_order_strict_mode = True
 
 Order can be manually configured via `class_attributes_order` config setting.
 
+Also it is possible to skip docstrings validation using `ignore_docstrings` flag.
+
 For example, if you prefer to put `class Meta` after constants and fields:
 
 ```ini
@@ -101,6 +103,7 @@ class_attributes_order =
     method,
     protected_method,
     private_method
+ignore_docstrings=True
 ```
 
 Configurable options:
@@ -155,14 +158,14 @@ class User:
     def fetch_info_from_crm(self):
         pass
 
-    LOGIN_FIELD = 'email'  # wtf? this should be on top of class definition!
+    LOGIN_FIELD = 'email'  # Wrong! This should be on top of class definition!
 
 
 class UserNode:
     class Meta:
         model = User
 
-    if DEBUG:  # not great idea at all
+    if DEBUG:  # not a great idea at all
         def is_synced_with_crm(self):
             pass
 
