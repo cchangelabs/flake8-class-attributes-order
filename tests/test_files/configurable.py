@@ -15,8 +15,16 @@ class Foo:
     def _egg(self):
         ...
 
+    @_egg.setter
+    def _egg(self, value):
+        ...
+
     @property
     def egg(self):
+        ...
+
+    @egg.setter
+    def egg(self, value):
         ...
 
     def bar(self):

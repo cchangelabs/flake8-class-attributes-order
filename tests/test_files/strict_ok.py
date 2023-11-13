@@ -7,14 +7,30 @@ class Foo:
 
     CONSTANT = True
 
-    def __init__():
+    def __init__(self):
         ...
 
     @property
     def bar(self):
         ...
 
+    @bar.setter
+    def bar(self, value):
+        ...
+
+    @bar.deleter
+    def bar(self):
+        ...
+
     @property
+    def _bar(self):
+        ...
+
+    @_bar.setter
+    def _bar(self, value):
+        ...
+
+    @_bar.deleter
     def _bar(self):
         ...
 

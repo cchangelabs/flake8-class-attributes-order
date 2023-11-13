@@ -11,7 +11,23 @@ class Foo:
     def foo(self):
         pass
 
+    @foo.setter
+    def foo(self, value):
+        pass
+
+    @foo.deleter
+    def foo(self):
+        pass
+
     @property
+    def _foo(self):
+        pass
+
+    @_foo.setter
+    def _foo(self, value):
+        pass
+
+    @_foo.deleter
     def _foo(self):
         pass
 
@@ -23,6 +39,14 @@ class Foo:
         pass
 
     @property
+    def __foo(self):
+        pass
+
+    @__foo.setter
+    def __foo(self, value):
+        pass
+
+    @__foo.deleter
     def __foo(self):
         pass
 
