@@ -1,6 +1,8 @@
 import ast
 from typing import Generator, Tuple, List
 
+from flake8.options.manager import OptionManager
+
 from flake8_class_attributes_order import __version__ as version
 from flake8_class_attributes_order.node_type_weights import get_node_weights
 from flake8_class_attributes_order.model_parts_info import get_model_parts_info
@@ -40,7 +42,13 @@ class ClassAttributesOrderChecker:
         )
 
     @classmethod
-    def parse_options(cls, options: str) -> None:
+    def parse_options(cls, options: OptionManager) -> None:
+        if not hasattr(options, 'use_class_attributes_order_strict_mode'):
+            options.use_class_attributes_order_strict_mode = False
+        if not hasattr(options, 'class_attributes_order'):
+            options.class_attributes_order = []
+        if not hasattr(options, 'ignore_docstring'):
+            options.ignore_docstring = False
         cls.options = options
 
     def run(self) -> Generator[Tuple[int, int, str, type], None, None]:

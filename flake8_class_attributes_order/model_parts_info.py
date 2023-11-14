@@ -94,6 +94,18 @@ def get_funcdef_type_by_decorator_info(node, decorator_names_to_types_map: dict[
             else:
                 funcdef = decorator_names_to_types_map[decorator_info.id]
             return funcdef
+        elif (
+            isinstance(decorator_info, ast.Attribute)
+            and decorator_info.attr in {'setter', 'deleter'}
+        ):
+            if node.name.startswith('__'):
+                funcdef = 'private_property_method'
+            elif node.name.startswith('_'):
+                funcdef = 'protected_property_method'
+            else:
+                funcdef = 'property_method'
+            return funcdef
+
     return None
 
 
