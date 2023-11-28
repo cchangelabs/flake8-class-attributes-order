@@ -127,6 +127,7 @@ def get_node_weights(options=None) -> Mapping[str, int]:
             'and --class-attributes-order. Order defined in --class-attributes-order will be used '
             'to check against.',
             Warning,
+            stacklevel=2,
         )
 
     if class_attributes_order:

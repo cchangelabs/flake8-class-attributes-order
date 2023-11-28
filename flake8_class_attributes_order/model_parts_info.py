@@ -6,6 +6,8 @@ def get_model_parts_info(model_ast, weights: Mapping[str, int]):
     parts_info = []
     for child_node in model_ast.body:
         node_type = get_model_node_type(child_node)
+        if not node_type:
+            raise ValueError(f'Node type should be defined for {child_node}')
         if node_type in weights:
             parts_info.append({
                 'model_name': model_ast.name,
@@ -16,7 +18,7 @@ def get_model_parts_info(model_ast, weights: Mapping[str, int]):
     return parts_info
 
 
-def get_model_node_type(child_node) -> str:
+def get_model_node_type(child_node) -> str | None:
     direct_node_types_mapping = [
         (ast.If, lambda n: 'if'),
         (ast.Pass, lambda n: 'pass'),
@@ -28,6 +30,7 @@ def get_model_node_type(child_node) -> str:
     for type_or_type_tuple, type_getter in direct_node_types_mapping:
         if isinstance(child_node, type_or_type_tuple):  # type: ignore
             return type_getter(child_node)
+    return None
 
 
 def get_assighment_type(child_node) -> str:

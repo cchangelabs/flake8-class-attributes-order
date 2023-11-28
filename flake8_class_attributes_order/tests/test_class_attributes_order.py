@@ -1,6 +1,6 @@
 import warnings
 
-from conftest import run_validator_for_test_file
+from flake8_class_attributes_order.tests.conftest import run_validator_for_test_file
 
 
 def test_file_with_improper_default_order():
