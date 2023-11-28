@@ -1,23 +1,31 @@
+PYTHON=3.11.6
+
 test:
-	python -m pytest
+	poetry run pytest
 
 coverage:
-	python -m pytest --cov=flake8_class_attributes_order --cov-report=xml
+	poetry run pytest --cov=flake8_class_attributes_order --cov-report=xml
 
 types:
-	mypy .
+	poetry run mypy .
 
 style:
-	flake8 .
+	poetry run flake8 .
 
-readme:
-	mdl README.md
+check: style types test
 
-requirements:
-	safety check -r requirements_dev.txt
+deps:
+	poetry env use $(PYTHON)
+	poetry install --all-extras --no-root
 
-check:
-	make style
-	make types
-	make test
-	make requirements
+deps-lock:
+	poetry lock --no-update
+
+deps-sync:
+	poetry install --all-extras --no-root --sync --with "dev"
+
+deps-update:
+	poetry lock
+
+deps-tree:
+	poetry show --tree
