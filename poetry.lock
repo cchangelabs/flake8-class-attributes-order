@@ -400,23 +400,6 @@ flake8 = ">=6.0.0"
 dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit", "pytest", "tox"]
 
 [[package]]
-name = "flake8-class-attributes-order"
-version = "0.1.4"
-description = "A flake8 extension that checks classes attributes order"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "flake8_class_attributes_order-0.1.4-py3-none-any.whl", hash = "sha256:258ade44747e901b7ec281c71156b98aa99c9686e4e235e627bd8de5d0e08d69"},
-]
-
-[package.dependencies]
-flake8 = "*"
-
-[package.source]
-type = "url"
-url = "https://github.com/cchangelabs/flake8-class-attributes-order/releases/download/0.1.4/flake8_class_attributes_order-0.1.4-py3-none-any.whl"
-
-[[package]]
 name = "flake8-eradicate"
 version = "1.5.0"
 description = "Flake8 plugin to find commented out code"
@@ -1106,4 +1089,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.1,<3.13.0"
-content-hash = "c5f92dd06422f18fd8ad23540b30dae6bd2432c7cbdd4943c03e8afe1094150b"
+content-hash = "8d4203d3a37031159eb0ae9eefe6a4d34fc9abd7d58002e4731644759ee69992"
