@@ -52,6 +52,8 @@ flake8-typing-imports = "^1.15.0"
 dlint = "^0.14.1"
 flake8-expression-complexity = "^0.0.11"
 pymarkdownlnt = "^0.9.14"
+black = "^23.12.0"
+isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -61,3 +63,29 @@ build-backend = "poetry.core.masonry.api"
 ignore_missing_imports = true
 warn_no_return = true
 exclude = "(build|env|venv.*|migrations|tests)"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+force_sort_within_sections = "true"
+atomic = "true"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | test_files
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''

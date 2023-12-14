@@ -9,10 +9,22 @@ coverage:
 types:
 	poetry run mypy .
 
-style:
+flake8:
 	poetry run flake8 .
 
-check: style types test
+black:
+	poetry run black .
+
+black-check:
+	poetry run black --check .
+
+isort:
+	poetry run isort .
+
+isort-check:
+	poetry run isort --check .
+
+check: black-check isort-check flake8 types test
 
 deps:
 	poetry env use $(PYTHON)

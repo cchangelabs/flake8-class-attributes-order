@@ -1,17 +1,16 @@
 import ast
-from typing import Generator, Tuple, List
+from typing import Generator, List, Tuple
 
 from flake8.options.manager import OptionManager
 
 from flake8_class_attributes_order import __version__ as version
-from flake8_class_attributes_order.node_type_weights import get_node_weights
 from flake8_class_attributes_order.model_parts_info import get_model_parts_info
+from flake8_class_attributes_order.node_type_weights import get_node_weights
 from flake8_class_attributes_order.ordering_errors import get_ordering_errors
 
 
 class ClassAttributesOrderChecker:
-
-    name = 'flake8-class-attributes-order'
+    name = "flake8-class-attributes-order"
     version = version
     options = None
 
@@ -22,32 +21,31 @@ class ClassAttributesOrderChecker:
     @classmethod
     def add_options(cls, parser) -> None:
         parser.add_option(
-            '--use-class-attributes-order-strict-mode',
-            action='store_true',
+            "--use-class-attributes-order-strict-mode",
+            action="store_true",
             parse_from_config=True,
-            help='Require more strict order of private class members',
+            help="Require more strict order of private class members",
         )
         parser.add_option(
-            '--class-attributes-order',
+            "--class-attributes-order",
             comma_separated_list=True,
             parse_from_config=True,
-            help='Comma-separated list of class attributes to '
-                 'configure order manually',
+            help="Comma-separated list of class attributes to " "configure order manually",
         )
         parser.add_option(
-            '--ignore-docstring',
-            action='store_true',
+            "--ignore-docstring",
+            action="store_true",
             parse_from_config=True,
-            help='Ignore docstring errors whenever they appear',
+            help="Ignore docstring errors whenever they appear",
         )
 
     @classmethod
     def parse_options(cls, options: OptionManager) -> None:
-        if not hasattr(options, 'use_class_attributes_order_strict_mode'):
+        if not hasattr(options, "use_class_attributes_order_strict_mode"):
             options.use_class_attributes_order_strict_mode = False
-        if not hasattr(options, 'class_attributes_order'):
+        if not hasattr(options, "class_attributes_order"):
             options.class_attributes_order = []
-        if not hasattr(options, 'ignore_docstring'):
+        if not hasattr(options, "ignore_docstring"):
             options.ignore_docstring = False
         cls.options = options
 
