@@ -7,7 +7,7 @@ def get_model_parts_info(model_ast, weights: Mapping[str, int]):
     for child_node in model_ast.body:
         node_type = get_model_node_type(child_node)
         if not node_type:
-            raise ValueError(f"Node type should be defined for {child_node}")
+            raise ValueError(f"Node type should be defined for {child_node.name}")
         if node_type in weights:
             parts_info.append(
                 {
